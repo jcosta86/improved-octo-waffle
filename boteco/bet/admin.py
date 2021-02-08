@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Team, Sport, Match
+from .models import Team, Sport, Match, Customer, Bet
 
 
 class TeamAdmin(admin.ModelAdmin):
@@ -22,6 +22,17 @@ class MatchAdmin(admin.ModelAdmin):
         'score_team_2')
 
 
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'document_number', 'phone_number', 'email')
+
+
+class BetAdmin(admin.ModelAdmin):
+    list_display = ('id_customer', 'id_match', 'id_team', 'bet_value')
+
+
 admin.site.register(Team, TeamAdmin)
 admin.site.register(Sport, SportAdmin)
 admin.site.register(Match, MatchAdmin)
+admin.site.register(Customer, CustomerAdmin)
+
+admin.site.register(Bet, BetAdmin)

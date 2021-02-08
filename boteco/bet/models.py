@@ -28,3 +28,23 @@ class Match(models.Model):
 
     def __str__(self):
         return f"Match location: {self.match_location} Date: {self.match_date}"
+
+
+class Customer(models.Model):
+    name = models.CharField(max_length=100, null=False, blank=False)
+    document_number = models.CharField(max_length=15, null=False, blank=False)
+    phone_number = models.CharField(max_length=22, null=False, blank=False)
+    email = models.EmailField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class Bet(models.Model):
+    id_customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False, related_name='+')
+    id_match = models.ForeignKey(Match, on_delete=models.CASCADE, null=False, related_name='+')
+    id_team = models.ForeignKey(Team, on_delete=models.CASCADE, null=False, related_name='+')
+    bet_value = models.DecimalField(max_digits=20, decimal_places=3, null=False, blank=False)
+
+    def __str__(self):
+        return f"{self.id_customer} - {self.bet_value}"
