@@ -6,4 +6,4 @@ class Team(models.Model):
     description = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"Team: {self.name} - Description{self.description}"
+        return f"Team: {self.name} - Description: {self.description}"
